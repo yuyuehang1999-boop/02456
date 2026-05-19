@@ -1,7 +1,10 @@
 import os
 import math
 
+import matplotlib
 import pandas as pd
+
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 RESULTS_CSV = "artifacts/results.csv"
@@ -147,6 +150,8 @@ def main():
         )
 
     df = load_results(RESULTS_CSV)
+
+    df = df[df["vocab_size"] != 128000].reset_index(drop=True)
 
     print("Loaded results:")
     print(df)
